@@ -13,5 +13,7 @@ int main()
     );
     Matrix<3, 3, double> b(a);
     b.print();
+	IDENTITY(3, double);
+	system("pause");
     return 0;
 }
