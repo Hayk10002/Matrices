@@ -1,5 +1,6 @@
 #include <iostream>
-#include "Matrix.hpp"
+#include <fstream>
+#include "Matrix_T.hpp"
 using namespace std; 
 
 #define PRINT(bt, text, at, eq, ae) cout << bt##text##at; (eq); cout << ##ae
@@ -8,21 +9,21 @@ using namespace std;
 
 int main()
 {
-    Matrix<3, 3> a(
+    Matrix_T<3, 3> a(
 		{
 			{1, 3, 4},
 			{-1, -5, 6},
 			{5, 2, 3}
 		}
 	);
-	Matrix<3, 3> b(
+	Matrix_T<3, 3> b(
 		{
 			{2, 0, 0},
 			{1, 0, -4}, 
 			{0, 0, 2}
 		}
 	);
-	Matrix<4, 2> c;
+	Matrix_T<4, 2> c;
 
 	PRINTM("A = ", a);
 	PRINTM("B = ", b);
@@ -43,17 +44,19 @@ int main()
 	PRINTO("Determinant of B is ", b.get_Determinant());
 	cout << "\n\nIf you try to calculate determinant for non-square matrix it will be a compile error\n\n";
 	PRINTM("Inverse matrix of A is ", a.get_Inverse());
-	cout << "\n\nIf you try to calculate inverse matrix of non-square matrix it will be a compile error and if you try to calculate inverse matrix of matrix which has determinant equal to 0, function will return Identity matrix of size of your matrix \n\n";
-	PRINTM("Inverse matrix of B can't be calculated => function returns Idenitity matrix ", b.get_Inverse());
+	cout << "\n\nIf you try to calculate inverse matrix of non-square matrix it will be a compile error and if you try to calculate inverse matrix of matrix which has determinant equal to 0, function will return an invalid matrix \n\n";
+	auto i = b.get_Inverse();
+	if (i) { PRINTM("Inverse matrix of B is ", i); }
+	else { PRINTO("Inverse matrix of B can't be calculated => can't even print B.get_Inverse() because it's invalid matrix", "\n"); }
 	cout << "There are functions for Console I/O and File I/O\n\nEnter matrix 3x3 without commas: \n";
 	cin >> a;
 	cout << "Your Matrix: \n" << a << "\n\n";
 	cout << "Saving your matrix in file output.txt\n";
-	ofstream fout("output.txt");
+	ofstream fout("output1.txt");
 	fout << a;
 	fout.close();
 	cout << "Reading matrix from file output.txt but with other dimensions (4x2) and printing it in console \n\n";
-	ifstream fin("output.txt");
+	ifstream fin("output1.txt");
 	fin >> c;
 	fin.close();
 	cout << c << "\n\n";
