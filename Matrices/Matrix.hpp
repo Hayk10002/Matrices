@@ -94,6 +94,18 @@ public:
 	{ 
 		return my_c; 
 	}
+	
+	//Returns number of rows of this matrix
+	size_t get_rows_count() const
+	{ 
+		return my_r; 
+	}
+
+	//Returns number of columns of this matrix
+	size_t get_columns_count() const
+	{ 
+		return my_c; 
+	}
 
 	//Fills this matrix with some value
 	void fill(my_T fill_value)
