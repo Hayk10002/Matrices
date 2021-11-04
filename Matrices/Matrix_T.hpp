@@ -244,18 +244,6 @@ public:
 		divide(val);
 	}
 
-	//Type casting operator to matrix_holder
-	operator matrix_holder<my_T>()
-	{
-		return matrix_holder<my_T>(*this);
-	}
-
-	//Type casting operator to matrix_holder
-	operator matrix_holder<my_T>() const
-	{
-		return matrix_holder<my_T>(*this);
-	}
-
 	//Type casting operator to bool(true if matrix is valid)
 	operator bool()
 	{
@@ -301,6 +289,7 @@ public:
 	Matrix_T<my_R, my_C, my_T>& operator=(std::initializer_list<std::initializer_list<o_T>> l)
 	{
 		init(l);
+		return (*this);
 	}
 
 
@@ -577,7 +566,7 @@ Matrix_T<R, C, T> operator+(oT val, Matrix_T<R, C, T> mat)
 template<size_t R, size_t C, class T, class oT>
 Matrix_T<R, C, T> operator+(Matrix_T<R, C, T> mat1, Matrix_T<R, C, oT> mat2)
 {
-	mat1.substract(mat2);
+	mat1.add(mat2);
 	return mat1;
 }
 
