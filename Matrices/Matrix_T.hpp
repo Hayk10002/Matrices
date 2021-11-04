@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <functional>
 
 
 //if my_R or my_C is 0 this class will be completely empty
@@ -290,6 +291,14 @@ public:
 	{
 		init(l);
 		return (*this);
+	}
+
+
+
+	//Applies function on every element of this matrix 
+	void apply_func(std::function<my_T(my_T)> f)
+	{
+		for (int i = 0; i < my_R; i++) for (int j = 0; j < my_C; j++) my_values[i][j] = f(my_values[i][j]);
 	}
 
 

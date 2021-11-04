@@ -4,19 +4,27 @@
 #include <fstream>
 #include <exception>
 #include <deque>
+#include <functional>
 
-#define DEFINEEXC(name) struct name : public std::exception \
-{\
-	const char * messege;\
-	name##(const char * messege) : exception(), messege(messege) {}\
-	const char * what()\
-	{\
-		return messege;\
-	}\
+class bad_matrix : public std::exception 
+{
+protected:
+	std::string messege = "Unexpected error";
+public:
+	bad_matrix(std::string messege) : exception(), messege(messege) {}
+	bad_matrix() : exception() {}
+	const char * what()
+	{
+		return messege.c_str();
+	}
 };
 
-DEFINEEXC(bad_matrix) 
-DEFINEEXC(bad_matrix_size)
+class bad_matrix_size : public bad_matrix 
+{	
+public:
+	bad_matrix_size(std::string messege) : bad_matrix(messege) {}
+	bad_matrix_size() : bad_matrix() {}
+};
 
 
 template <class my_T = double>
@@ -300,6 +308,14 @@ public:
 	{
 		init(my_r, my_c, l);
 		return (*this);
+	}
+
+
+
+	//Applies function on every element of this matrix 
+	void apply_func(std::function<my_T(my_T)> f)
+	{
+		for (auto &row : my_values) for (auto &element : row) element = f(element);
 	}
 
 

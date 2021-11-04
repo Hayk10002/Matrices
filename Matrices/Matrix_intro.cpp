@@ -3,9 +3,9 @@
 #include "Matrix.hpp"
 using namespace std;
 
-#define PRINT(bt, text, at, eq, ae) cout << bt##text##at; (eq); cout << ##ae
-#define PRINTM(text, eq) PRINT("\n\n", text, "\n\n", (eq).print("\t", "\n\n"), "\n\n")
-#define PRINTO(text, eq) PRINT("\n\n", text, "", cout << (eq), "\n\n")
+#define PRINT(bt, text, at, exp, ae) cout << bt##text##at; (exp); cout << ##ae
+#define PRINTM(text, exp) PRINT("\n\n", text, "\n\n", (exp).print("\t", "\n\n"), "\n\n")
+#define PRINTO(text, exp) PRINT("\n\n", text, "", cout << (exp), "\n\n")
 
 int main()
 {
@@ -54,6 +54,8 @@ int main()
 	{
 		cout << "Inverse matrix of B can't be calculated => catched an exception of type bad_matrix\n" << err.what();
 	}
+	a.apply_func([](double a) -> double {return a / 3.0; });
+	PRINTM("There is a method called 'apply_func' that applies any function for all elements of the matrix\nAfter applying function that divides number by 3 on matrix A, all elements of A become divided by 3\nA = ", a);
 	cout << "There are functions for Console I/O and File I/O\n\nEnter matrix 3x3 without commas: \n";
 	cin >> a;
 	cout << "Your Matrix: \n" << a << "\n\n";

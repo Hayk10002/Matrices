@@ -48,6 +48,8 @@ int main()
 	auto i = b.get_Inverse();
 	if (i) { PRINTM("Inverse matrix of B is ", i); }
 	else { PRINTO("Inverse matrix of B can't be calculated => can't even print B.get_Inverse() because it's invalid matrix", "\n"); }
+	a.apply_func([](double a) -> double {return a / 3.0; });
+	PRINTM("There is a method called 'apply_func' that applies any function for all elements of the matrix\nAfter applying function that divides number by 3 on matrix A, all elements of A become divided by 3\nA = ", a);
 	cout << "There are functions for Console I/O and File I/O\n\nEnter matrix 3x3 without commas: \n";
 	cin >> a;
 	cout << "Your Matrix: \n" << a << "\n\n";
