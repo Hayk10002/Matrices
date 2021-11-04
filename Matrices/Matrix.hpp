@@ -92,7 +92,7 @@ public:
 	//Returns number of columns of this matrix
 	size_t get_columns_count() 
 	{ 
-		return my_r; 
+		return my_c; 
 	}
 
 	//Fills this matrix with some value
