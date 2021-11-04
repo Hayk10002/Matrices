@@ -655,7 +655,7 @@ bool operator!=(Matrix<T> mat1, Matrix<oT> mat2)
 
 //Operator for writing in console
 template<class T>
-std::ostream& operator<<(std::ostream& cout, Matrix<T>& mat)
+std::ostream& operator<<(std::ostream& cout, const Matrix<T>& mat)
 {
 	mat.print();
 	return cout;
@@ -671,7 +671,7 @@ std::istream& operator>>(std::istream& cin, Matrix<T>& mat)
 
 //Operator for writing in file
 template<class T>
-std::ofstream& operator<<(std::ofstream& fout, Matrix<T>& mat)
+std::ofstream& operator<<(std::ofstream& fout, const Matrix<T>& mat)
 {
 	fout << ' ' << mat.get_rows_count() << ' ' << mat.get_columns_count() << ' ';
 	for (size_t i = 0; i < mat.get_rows_count(); i++) for (size_t j = 0; j < mat.get_columns_count(); j++) fout << mat(i, j) << ' ';
