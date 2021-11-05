@@ -337,7 +337,7 @@ public:
 	{
 		for (size_t i = 0; i < my_r; i++)
 		{
-			for (size_t j = 0; j < my_c; j++) std::cout << ((my_values < 0) ? "" : " ") << my_values[i][j] << ((j == my_c - 1) ? "" : horizontal_sep);
+			for (size_t j = 0; j < my_c; j++) std::cout << ((my_values[i][j] < 0) ? "" : " ") << my_values[i][j] << ((j == my_c - 1) ? "" : horizontal_sep);
 			std::cout << ((i == my_r - 1) ? "" : vertical_sep);
 		}
 	}
@@ -347,7 +347,7 @@ public:
 	{
 		for (size_t i = 0; i < my_r; i++)
 		{
-			for (size_t j = 0; j < my_c; j++) std::cout << ((my_values < 0) ? "" : " ") << my_values[i][j] << ((j == my_c - 1) ? "" : horizontal_sep);
+			for (size_t j = 0; j < my_c; j++) std::cout << ((my_values[i][j] < 0) ? "" : " ") << my_values[i][j] << ((j == my_c - 1) ? "" : horizontal_sep);
 			std::cout << ((i == my_r - 1) ? "" : vertical_sep);
 		}
 	}
